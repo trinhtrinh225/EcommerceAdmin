@@ -10,31 +10,35 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.e_commerceadmin.Model.ProductModel;
 import com.example.e_commerceadmin.R;
+import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RecyAdapterProduct extends RecyclerView.Adapter<RecyAdapterProduct.ViewHolder> {
 
-    public class ViewHolder extends  RecyclerView.ViewHolder{
-        TextView titles, prices;
-        ImageView gridImages;
+    private Context context;
+    public ArrayList<ProductModel> productModelsList;
 
-        public  ViewHolder(View itemView){
-            super(itemView);
-            prices = itemView.findViewById(R.id.tvPriceRecycler);
-            titles = itemView.findViewById(R.id.tvNameRecycler);
-            gridImages = itemView.findViewById(R.id.imageRecyclerview);
-        }
+    public RecyAdapterProduct(Context context1, ArrayList<ProductModel> productModelsList1)
+    {
+        this.context = context1;
+        this.productModelsList = productModelsList1;
     }
 
+
+
+    List<String> discountPriceS;
     List<String> prices;
     List<String> titles;
     List<Integer> images;
     LayoutInflater inflater;
 
-    public RecyAdapterProduct(Context context, List<String> titles, List<Integer> images, List<String> prices)
+    public RecyAdapterProduct(Context context, List<String> titles, List<Integer> images, List<String> prices, List<String> discountPriceS)
     {
+        this.discountPriceS = discountPriceS;
         this.prices = prices;
         this.titles = titles;
         this.images = images;
@@ -44,17 +48,62 @@ public class RecyAdapterProduct extends RecyclerView.Adapter<RecyAdapterProduct.
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.recyclerview_model, parent, false);
-
+        View view = inflater.from(context).inflate(R.layout.recyclerview_model, parent, false);
+        
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.titles.setText(titles.get(position));
-        holder.prices.setText(prices.get(position));
-        holder.gridImages.setImageResource(images.get(position));
+        ProductModel productModel = productModelsList.get(position);
+        String id = productModel.getProductID();
+        String uid = productModel.getUid();
+        String discountAvailable = productModel.getDiscountAvailable();
+        String discountPrice = productModel.getDiscountPrice();
+        String productTitle = productModel.getProductTitle();
+        String productQuantity = productModel.getProductQuantity();
+        String productCategory = productModel.getProductCategory();
+        String productDescription = productModel.getProductDescription();
+        String productPrice = productModel.getProductPrice();
+        String productIcon = productModel.getProductIcon();
+        String stimetamp = productModel.getTimestamp();
+        //setData
+        
 
+        holder.txtTitles.setText(productTitle);
+        holder.txtPrices.setText(productPrice);
+        holder.txtDiscountPriceS.setText(discountPrice);
+        if(discountAvailable.equals("true"))
+        {
+            //product is discount
+            holder.txtDiscountPriceS.setVisibility(View.VISIBLE);
+        }
+        else {
+            holder.txtDiscountPriceS.setVisibility(View.GONE);
+        }
+        try{
+           Picasso.with(context).load(productIcon).placeholder(R.drawable.phone_image).into(holder.imgGridImages);
+        }   catch (Exception e){
+            holder.imgGridImages.setImageResource(R.drawable.aonu_image);
+        }
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                
+            }
+        });
+
+    }
+    public class ViewHolder extends  RecyclerView.ViewHolder{
+        TextView txtTitles, txtPrices, txtDiscountPriceS;
+        ImageView imgGridImages;
+        public  ViewHolder(View itemView){
+            super(itemView);
+            txtPrices = itemView.findViewById(R.id.tvPriceRecycler);
+            txtTitles = itemView.findViewById(R.id.tvNameRecycler);
+            txtDiscountPriceS = itemView.findViewById(R.id.discountPriceS);
+            imgGridImages = itemView.findViewById(R.id.imageRecyclerview);
+        }
     }
 
     @Override

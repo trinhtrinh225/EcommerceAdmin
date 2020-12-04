@@ -134,7 +134,7 @@ public class them extends AppCompatActivity {
         productTitle = themTenSP.getText().toString().trim();
         productCategory = themDanhMucSP.getText().toString().trim();
         productQuantity = themSLSP.getText().toString().trim();
-        productDescription = themDanhMucSP.getText().toString().trim();
+        productDescription = themMoTaSP.getText().toString().trim();
         productPrice = themGiaSP.getText().toString().trim();
         discountPrice = themDiscount.getText().toString().trim();
         discountAvailable = discountSwitch.isChecked(); //true/false
