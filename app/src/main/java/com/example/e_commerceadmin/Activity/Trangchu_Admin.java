@@ -22,6 +22,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
+
+import com.example.e_commerceadmin.Adapter.RecyAdapterProduct;
 import com.example.e_commerceadmin.QLDonHang;
 import com.example.e_commerceadmin.QLKhachHang;
 import com.example.e_commerceadmin.R;
@@ -46,19 +48,59 @@ public class Trangchu_Admin<FirebaseListAdapter> extends AppCompatActivity imple
     //Show:
      RecyclerView recyclerView;
      DatabaseReference databaseReference;
-     CategoryAdapter cadapter;
+     private CategoryAdapter cadapter;
      List<Category> list;
+
+    private RecyclerView recycle_product;
+    private List<String> titles;
+    private List<String> prices;
+    private List<Integer> images;
+    private RecyAdapterProduct recyAdapterProduct;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trangchu__admin);
-        floatingButton = findViewById(R.id.floatingButton);
-        drawerLayout = findViewById(R.id.drawer_layout);
-        navigationView = findViewById(R.id.nav_menu);
-        floatingButton = findViewById(R.id.floatingButton);
-        toolbar = findViewById(R.id.toolBar);
+        AnhXa();
         setSupportActionBar(toolbar);
+        titles = new ArrayList<>();
+        prices = new ArrayList<>();
+        images = new ArrayList<>();
+        titles.add("Hellow");
+        prices.add("12000");
+        images.add(R.drawable.phone_image);
+        titles.add("Hellow");
+        prices.add("12000");
+        images.add(R.drawable.phone_image);
+        titles.add("Hellow");
+        prices.add("12000");
+        images.add(R.drawable.phone_image);
+        titles.add("Hellow");
+        prices.add("12000");
+        images.add(R.drawable.phone_image);
+        titles.add("Hellow");
+        prices.add("12000");
+        images.add(R.drawable.phone_image);
+        titles.add("Hellow");
+        prices.add("12000");
+        images.add(R.drawable.phone_image);
+        titles.add("Hellow");
+        prices.add("12000");
+        images.add(R.drawable.phone_image);
+        titles.add("Hellow");
+        prices.add("12000");
+        images.add(R.drawable.phone_image);
+        titles.add("Hellow");
+        prices.add("12000");
+        images.add(R.drawable.phone_image);
+        titles.add("Hellow");
+        prices.add("12000");
+        images.add(R.drawable.phone_image);
+        recyAdapterProduct = new RecyAdapterProduct(getApplicationContext(), titles, images, prices);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getApplicationContext(), 2, GridLayoutManager.VERTICAL, false);
+        recycle_product.setLayoutManager(gridLayoutManager);
+        recycle_product.setAdapter(recyAdapterProduct);
+
 
 
         //============================================Model===Category============================================
@@ -74,7 +116,18 @@ public class Trangchu_Admin<FirebaseListAdapter> extends AppCompatActivity imple
                 Display();
             }
         });
+        
         showCategory();
+
+    }
+
+    private void AnhXa() {
+        floatingButton = findViewById(R.id.floatingButton);
+        drawerLayout = findViewById(R.id.drawer_layout);
+        navigationView = findViewById(R.id.nav_menu);
+        floatingButton = findViewById(R.id.floatingButton);
+        toolbar = findViewById(R.id.toolBar);
+        recycle_product = findViewById(R.id.recycle_product);
     }
 
     private void showCategory() {

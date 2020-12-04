@@ -19,20 +19,19 @@
         <activity android:name=".QLDonHang" />
         <activity android:name=".QuanLySanPham.Sua" />
         <activity android:name=".chitiet_xoa" />
-        <activity android:name=".QuanLySanPham.them" />
+        <activity android:name=".QuanLySanPham.them">
+
+        </activity>
         <activity android:name=".ThongTinCuaHang.ThongTin" />
         <activity android:name=".Activity.Trangchu_Admin"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".Activity.Login_Admin" >
-
-
-
         </activity>
     </application>
 
