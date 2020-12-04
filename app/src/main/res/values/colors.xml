@@ -7,6 +7,7 @@
     <color name="colorbgStart">#CEDFEC</color>
     <color name="colorbgEnd">#0099ff</color>
     <color name="colorBlue">#0000FF</color>
+    <color name="colorWhite">#fff</color>
     <color name="gradient_start">#5770f3</color>
     <color name="gradient_end">#8e5aeb</color>
     <color name="profile_desc">#D1D1FF</color>
