@@ -6,105 +6,193 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".QuanLySanPham.them">
+
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:orientation="vertical">
+
+        <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/themImageSP"
+                    android:padding="10dp"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp"
+                    android:src="@drawable/phone_image" />
+
+                <EditText
+                    android:id="@+id/themTenSP"
+                    style="@style/Edittest"
+                    android:hint="Nhập tên sản phẩm" />
+
+                <EditText
+                    android:id="@+id/themGiaSP"
+                    style="@style/Edittest"
+                    android:hint="Nhập giá sản phẩm" />
+
+                <EditText
+                    android:id="@+id/themSLSP"
+                    style="@style/Edittest"
+                    android:hint="Số lượng sản phẩm" />
+
+                <!--                <LinearLayout-->
+                <!--                    android:layout_width="wrap_content"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_gravity="center"-->
+                <!--                    android:orientation="horizontal">-->
+
+                <!--                    <Spinner-->
+                <!--                        android:layout_width="120dp"-->
+                <!--                        android:layout_height="42dp"-->
+                <!--                        android:layout_marginLeft="20dp"-->
+                <!--                        android:layout_marginTop="10dp"-->
+                <!--                        android:entries="@array/list" />-->
+                <!--                </LinearLayout>-->
+                <TextView
+                    android:id="@+id/themDanhMucSP"
+                    style="@style/Edittest"
+                    android:drawableRight="@drawable/spinner"
+                    android:hint="Danh mục sản phẩm" />
+
+                <EditText
+                    android:id="@+id/themMoTaSP"
+                    style="@style/Edittest"
+                    android:layout_height="200dp"
+                    android:hint="Mô tả sản phẩm" />
+
+
+                <!--<LinearLayout-->
+                <!--    android:layout_width="wrap_content"-->
+                <!--    android:layout_height="wrap_content"-->
+                <!--    android:orientation="horizontal"-->
+                <!--    android:layout_gravity="center">-->
+                <!--            <ImageView-->
+                <!--                android:layout_width="116dp"-->
+                <!--                android:layout_height="122dp"-->
+                <!--                android:src="@drawable/ao1" />-->
+                <!--    <ImageView-->
+                <!--        android:layout_width="116dp"-->
+                <!--        android:layout_height="122dp"-->
+                <!--        android:src="@drawable/ao2" />-->
+                <!--    <ImageView-->
+                <!--        android:layout_width="116dp"-->
+                <!--        android:layout_height="122dp"-->
+                <!--        android:src="@drawable/images" />-->
+                <!--</LinearLayout>-->
+
+                <!--            <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+                <!--                android:id="@+id/fab"-->
+                <!--                android:layout_width="wrap_content"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:layout_gravity="left"-->
+                <!--                android:layout_margin="@dimen/fab_margin"-->
+                <!--                android:background="#000"-->
+                <!--                android:src="@drawable/ic_baseline_add_24" />-->
+
+                <!--            <LinearLayout-->
+                <!--                android:layout_width="wrap_content"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:layout_gravity="center"-->
+                <!--                android:layout_marginBottom="20dp"-->
+                <!--                android:orientation="horizontal">-->
+
+                <!--                <Button-->
+                <!--                    style="@style/Button"-->
+                <!--                    android:layout_width="110dp"-->
+                <!--                   android:layout_gravity="left"-->
+                <!--                    android:text="Hủy" />-->
+                <!--            <Button-->
+                <!--                style="@style/Button"-->
+                <!--                android:layout_width="110dp"-->
+                <!--                android:layout_marginLeft="150dp"-->
+                <!--                android:text="Thêm" />-->
+                <!--            </LinearLayout>-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:src="@drawable/phone_image" />
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:src="@drawable/phone_image" />
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:src="@drawable/phone_image" />
+                </LinearLayout>
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fab"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left|end"
+                    android:layout_margin="@dimen/fab_margin"
+                    android:background="#000"
+                    android:src="@drawable/ic_baseline_add_24" />
+                <!--                Discount-->
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/discountSwitch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorbgEnd"
+                    android:text="Giam gia"
+                    />
+                <EditText
+                    android:id="@+id/themDiscount"
+                    style="@style/Edittest"
+                    android:hint="Phần trăm giảm giá (%)" />
+                
+                
+
+            </LinearLayout>
+
+        </ScrollView>
 
 
     </LinearLayout>
 
-    <TextView
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/vector" />
+        android:gravity="end|bottom"
+        android:orientation="horizontal">
 
-    <ScrollView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:fillViewport="true">
-
-        <LinearLayout
-            android:layout_width="match_parent"
+        <Button
+            android:id="@+id/btnHuy"
+            style="@style/Button"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_weight="1"
+            android:text="Hủy" />
 
-            <EditText style="@style/Edittest"
-                android:hint="Nhập tên sản phẩm"/>
-
-            <EditText style="@style/Edittest"
-                android:hint="Nhập giá sản phẩm"/>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:orientation="horizontal">
-
-                <Spinner
-                    android:layout_width="120dp"
-                    android:layout_height="42dp"
-                    android:layout_marginLeft="20dp"
-                    android:entries="@array/list"
-                    android:layout_marginTop="10dp" />
-
-                <EditText
-                    style="@style/Edittest"
-                    android:layout_width="176dp"
-                    android:hint="Nhập số lượng"/>
-
-            </LinearLayout>
-
-            <EditText
-                style="@style/Edittest"
-                android:layout_height="200dp"
-                android:hint="Mô tả sản phẩm"/>
-<LinearLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:layout_gravity="center">
-            <ImageView
-                android:layout_width="116dp"
-                android:layout_height="122dp"
-                android:src="@drawable/ao1" />
-    <ImageView
-        android:layout_width="116dp"
-        android:layout_height="122dp"
-        android:src="@drawable/ao2" />
-    <ImageView
-        android:layout_width="116dp"
-        android:layout_height="122dp"
-        android:src="@drawable/images" />
-</LinearLayout>
-
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fab"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:layout_margin="@dimen/fab_margin"
-                android:background="#000"
-                android:src="@drawable/ic_baseline_add_24" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginBottom="20dp"
-                android:orientation="horizontal">
-
-                <Button
-                    style="@style/Button"
-                    android:layout_width="110dp"
-                   android:layout_gravity="left"
-                    android:text="Hủy" />
-            <Button
-                style="@style/Button"
-                android:layout_width="110dp"
-                android:layout_marginLeft="150dp"
-                android:text="Thêm" />
-            </LinearLayout>
-        </LinearLayout>
-    </ScrollView>
+        <Button
+            android:id="@+id/btnThemSP"
+            style="@style/Button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Thêm" />
+    </LinearLayout>
 </LinearLayout>

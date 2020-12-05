@@ -19,6 +19,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ImageV
     private Context acontext;
     private List<Category> acategories;
 
+
     public CategoryAdapter(Context acontext, List<Category> acategories)
     {
         this.acontext = acontext;
@@ -48,6 +49,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ImageV
     public int getItemCount() {
         return acategories.size();
     }
+
+
 
     public class ImageViewHolder extends RecyclerView.ViewHolder{
         TextView tvName;

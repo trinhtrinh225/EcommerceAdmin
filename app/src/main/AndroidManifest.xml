@@ -22,12 +22,13 @@
         <activity android:name=".chitiet_xoa" />
         <activity android:name=".QuanLySanPham.them" />
         <activity android:name=".Activity.UploadFile" />
+
+
         <activity android:name=".ThongTinCuaHang.ThongTin" />
         <activity android:name=".Activity.Trangchu_Admin"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
 
-        <activity android:name=".Activity.Login_Admin" >
-
+        <activity android:name=".Activity.Login_Admin">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -35,6 +36,7 @@
             </intent-filter>
 
         </activity>
+
     </application>
 
 </manifest>
