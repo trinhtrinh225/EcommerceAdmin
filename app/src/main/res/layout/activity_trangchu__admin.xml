@@ -41,19 +41,58 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
-                <EditText
-                    android:background="@drawable/round_border"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:hint="Tìm kiếm sản phẩm"
-                    android:padding="10dp"
-                    android:layout_margin="10dp"
-                    android:drawableLeft="@drawable/search" />
+               <LinearLayout
+                   android:id="@+id/linearSearch"
+                   android:layout_width="match_parent"
+                   android:layout_height="0dp"
+                   android:layout_weight="3"
+                   android:orientation="horizontal">
+                   <EditText
+                       android:id="@+id/edtSearchFilter"
+                       android:background="@drawable/round_border"
+                       android:drawableStart="@drawable/search"
+                       android:layout_width="0dp"
+                       android:layout_weight="10"
+                       android:layout_height="50dp"
+                       android:hint="Tìm kiếm sản phẩm"
+                       android:padding="10dp"
+                       android:layout_margin="10dp"
+                       android:drawableLeft="@drawable/search"
+                       />
+                   <ImageButton
+                       android:id="@+id/imgBtnCateRight"
+                       android:layout_width="wrap_content"
+                       android:layout_weight="1"
+                       android:layout_gravity="center_vertical"
+                       android:layout_height="50dp"
+                       android:scaleType="fitXY"
+                       android:background="@null"
+                       android:src="@drawable/ic_action_category"/>
+               </LinearLayout>
 
                 <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/filterProduct"
+                        android:layout_marginBottom="5dp"
+                        android:layout_width="wrap_content"
+                        android:text="Tất cả sản phẩm"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:textColor="#000"
+                        android:textStyle="bold|italic"
+                        />
+                </LinearLayout>
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                    android:layout_height="0dp"
+                    android:layout_weight="14"
+                    android:orientation="horizontal"
+                  >
+
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recycle_category"
