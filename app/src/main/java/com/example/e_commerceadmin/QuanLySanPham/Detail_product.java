@@ -1,10 +1,12 @@
-package com.example.e_commerceadmin;
+package com.example.e_commerceadmin.QuanLySanPham;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.ViewFlipper;
+
+import com.example.e_commerceadmin.R;
 
 public class Detail_product extends AppCompatActivity {
 
