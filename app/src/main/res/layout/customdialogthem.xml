@@ -4,10 +4,17 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="15dp">
+    <ProgressBar
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:id="@+id/progress_bar"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
 
         <TextView
             android:layout_width="wrap_content"
@@ -24,28 +31,42 @@
             android:layout_height="43dp"
             android:imeOptions="actionDone"
             android:padding="10dp"
-            android:password="true"
             android:singleLine="true" />
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="172dp"
         android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="53dp"
+            android:layout_marginTop="10dp"
             android:text="Chọn icon: "
             android:textColor="#000"
-            android:textSize="20dp"
-            android:layout_marginTop="10dp"/>
+            android:textSize="20dp" />
 
         <Button
             android:id="@+id/btnIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Chọn"
             android:layout_marginTop="10dp"
-            android:drawableRight="@drawable/ic_baseline_insert_drive_file_24" />
+            android:drawableRight="@drawable/ic_baseline_insert_drive_file_24"
+            android:text="Chọn" />
+
+        <ImageView
+            android:id="@+id/hinhup"
+            android:layout_width="147dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp" />
     </LinearLayout>
+    <Button
+        android:id="@+id/btnChon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Thêm"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+       />
 </LinearLayout>
