@@ -73,7 +73,7 @@ public class ProductModel {
     }
 
     public String getProductPrice() {
-        return productPrice;
+        return productPrice + " đ";
     }
 
     public void setProductPrice(String productPrice) {
@@ -113,7 +113,7 @@ public class ProductModel {
     }
 
     public String getDiscountPrice() {
-        return discountPrice;
+        return "-" + discountPrice + "% OFF";
     }
 
     public void setDiscountPrice(String discountPrice) {

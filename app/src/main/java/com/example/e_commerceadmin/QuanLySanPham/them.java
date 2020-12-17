@@ -17,9 +17,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.storage.StorageManager;
 import android.provider.MediaStore;
-import android.provider.SyncStateContract;
 import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
@@ -38,7 +36,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.core.Constants;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -70,7 +67,7 @@ public class them extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_them);
+        setContentView(R.layout.them_sp);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("Thêm sản phẩm ");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -80,7 +77,7 @@ public class them extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         //setup progress dialog
         progressDialog = new ProgressDialog(this);
-        progressDialog.setTitle("Please Wait");
+        progressDialog.setTitle("Đang thêm sản phẩm...");
         progressDialog.setCanceledOnTouchOutside(false);
 //        Discount
         discountSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -353,23 +350,19 @@ public class them extends AppCompatActivity {
         intent.putExtra(MediaStore.EXTRA_OUTPUT, image_Uri);
         startActivityForResult(intent, IMAGE_PICK_CAMERA_CODE);
     }
-    private boolean checkStoragePermission()
-    {
+    private boolean checkStoragePermission() {
         boolean result = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == (PackageManager.PERMISSION_GRANTED);
         return  result;
     }
-    private void requestStoragePermissin()
-    {
+    private void requestStoragePermissin() {
         ActivityCompat.requestPermissions(this, storagePermission, STORAGE_REQUEST_CODE);
     }
-    private boolean checkCameraPermission()
-    {
+    private boolean checkCameraPermission() {
         boolean result = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == (PackageManager.PERMISSION_GRANTED);
         boolean result1 = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == (PackageManager.PERMISSION_GRANTED);
         return  result && result1;
     }
-    private void requestCameraPermissin()
-    {
+    private void requestCameraPermissin() {
         ActivityCompat.requestPermissions(this, cameraPermission, CAMERA_REQUEST_CODE);
     }
     //handle permisson result

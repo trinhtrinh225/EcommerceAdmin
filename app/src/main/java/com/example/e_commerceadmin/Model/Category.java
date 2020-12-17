@@ -1,4 +1,4 @@
-package com.example.e_commerceadmin.Activity;
+package com.example.e_commerceadmin.Model;
 
 public class Category {
     private String cate_name, cate_image;

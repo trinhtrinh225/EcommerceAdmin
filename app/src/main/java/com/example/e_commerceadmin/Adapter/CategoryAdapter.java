@@ -1,4 +1,4 @@
-package com.example.e_commerceadmin.Activity;
+package com.example.e_commerceadmin.Adapter;
 
 import android.content.Context;
 import android.graphics.Rect;
@@ -6,12 +6,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.e_commerceadmin.Activity.Trangchu_Admin;
+import com.example.e_commerceadmin.Model.Category;
 import com.example.e_commerceadmin.R;
+import com.google.android.material.snackbar.Snackbar;
 import com.squareup.picasso.Picasso;
 import java.util.List;
 
@@ -19,6 +21,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ImageV
     private Context acontext;
     private List<Category> acategories;
 
+    Trangchu_Admin trangchu;
 
     public CategoryAdapter(Context acontext, List<Category> acategories)
     {
@@ -36,13 +39,23 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ImageV
 
     @Override
     public void onBindViewHolder(@NonNull ImageViewHolder holder, int i) {
-        Category category = acategories.get(i);
+        final Category category = acategories.get(i);
         holder.tvName.setText(category.getCate_name());
         Picasso.with(acontext)
                 .load(category.getCate_image())
                 .placeholder(R.drawable.ao).fit()
                 .centerCrop()
                 .into(holder.igIcon);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                String selected = category.getCate_name();
+//                trangchu.loadFilterProduct(selected);
+                Snackbar.make(v, "Danh mục sản phẩm!", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
     }
 
     @Override
@@ -61,6 +74,10 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ImageV
             igIcon = (ImageView) itemView.findViewById(R.id.hinh);
         }
     }
+
+
+
+
     public class SpaceDividerItemDecoration extends RecyclerView.ItemDecoration {
 
         private final int mSpaceHeight;

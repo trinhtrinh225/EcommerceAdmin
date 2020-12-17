@@ -10,28 +10,28 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.e_commerceadmin.Adapter.AdapterProducts;
+import com.example.e_commerceadmin.Adapter.CategoryAdapter;
+import com.example.e_commerceadmin.Model.Category;
 import com.example.e_commerceadmin.Model.ListCategory;
 import com.example.e_commerceadmin.Model.ProductModel;
 import com.example.e_commerceadmin.QLDonHang;
@@ -44,7 +44,6 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.AuthCredential;
-import com.google.firebase.auth.EmailAuthCredential;
 import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -53,11 +52,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
-import com.squareup.picasso.Picasso;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,19 +73,10 @@ public class Trangchu_Admin<FirebaseListAdapter> extends AppCompatActivity imple
     //Show:
     RecyclerView recyclerView;
     DatabaseReference databaseReference;
-    private CategoryAdapter cadapter;
+    CategoryAdapter cadapter;
     List<Category> list;
-    private FirebaseAuth firebaseAuth;
-
-    private ArrayList<ProductModel> productModelsList;
-    private AdapterProducts adapterProducts;
-
-     RecyclerView recyclerView;
-     DatabaseReference databaseReference;
-     private CategoryAdapter cadapter;
-     List<Category> list;
-     FirebaseDatabase fb;
-     FirebaseAuth firebaseAuth;
+    FirebaseDatabase fb;
+    FirebaseAuth firebaseAuth;
     //Gallery
     private  static final int PICK_IMAGE_REQUEST = 1;
     //Upload
@@ -99,12 +87,13 @@ public class Trangchu_Admin<FirebaseListAdapter> extends AppCompatActivity imple
     private ProgressDialog progressDialog;
 
 
-     private RecyclerView recycle_product;
-//    private List<String> titles;
-//    private List<String> prices;
-//    private List<Integer> images;
-//    private List<String> discountPriceS;
-//    private RecyAdapterProduct recyAdapterProduct;
+
+    private ArrayList<ProductModel> productModelsList;
+    private AdapterProducts adapterProducts;
+
+
+    private RecyclerView recycle_product;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,9 +101,7 @@ public class Trangchu_Admin<FirebaseListAdapter> extends AppCompatActivity imple
         setContentView(R.layout.activity_trangchu__admin);
         AnhXa();
         setSupportActionBar(toolbar);
-//
         hinhup = findViewById(R.id.hinhup);
-
 
         //============================================Model===Category============================================
         firebaseAuth = FirebaseAuth.getInstance();
@@ -132,6 +119,7 @@ public class Trangchu_Admin<FirebaseListAdapter> extends AppCompatActivity imple
         });
 
         showCategory();
+
         loadAllProducts();
 
         imgBtnCateRight.setOnClickListener(new View.OnClickListener() {
@@ -142,7 +130,7 @@ public class Trangchu_Admin<FirebaseListAdapter> extends AppCompatActivity imple
                         .setItems(ListCategory.productCategories1, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                        //get select Item
+                                //get select Item
                                 String selected = ListCategory.productCategories1[which];
                                 filterProduct.setText(selected);
                                 if (selected.equals("Tất cả"))
@@ -181,10 +169,73 @@ public class Trangchu_Admin<FirebaseListAdapter> extends AppCompatActivity imple
             }
         });
 
+    }
+    public void loadFilterProduct(final String selected) {
+        productModelsList = new ArrayList<>();
+        //get all products
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Products");
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                //clear productList
+                productModelsList.clear();
+                for (DataSnapshot ds : snapshot.getChildren()) {
+                    String productCategory  = "" + ds.child("productCategory").getValue();
+                    if(selected.equals(productCategory))
+                    {
+                        ProductModel productModel = ds.getValue(ProductModel.class);
+                        productModelsList.add(productModel);
+                    }
+                }
+                //setupAdapter
+                adapterProducts = new AdapterProducts(Trangchu_Admin.this, productModelsList);
+                //GridLayoutManager gridLayoutManager = new GridLayoutManager(getApplicationContext(), 2, GridLayoutManager.VERTICAL, false);
+                LinearLayoutManager gridLayoutManager = new LinearLayoutManager(Trangchu_Admin.this);
+                gridLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                recycle_product.setLayoutManager(gridLayoutManager);
+                recycle_product.setAdapter(adapterProducts);
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
+    private void loadAllProducts() {
+        productModelsList = new ArrayList<>();
+        //get all products
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Products");
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                //clear productList
+                productModelsList.clear();
+                for (DataSnapshot ds : snapshot.getChildren()) {
+                    ProductModel productModel = ds.getValue(ProductModel.class);
+                    productModelsList.add(productModel);
+                }
+                //setupAdapter
+                adapterProducts = new AdapterProducts(Trangchu_Admin.this, productModelsList);
+                GridLayoutManager gridLayoutManager = new GridLayoutManager(getApplicationContext(), 2, GridLayoutManager.VERTICAL, false);
+//                LinearLayoutManager gridLayoutManager = new LinearLayoutManager(Trangchu_Admin.this);
+//                gridLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                recycle_product.setLayoutManager(gridLayoutManager);
+                recycle_product.setAdapter(adapterProducts);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+
     private void AnhXa() {
+        imgBtnCateRight = findViewById(R.id.imgBtnCateRight);
+        edtSearchFilter = findViewById(R.id.edtSearchFilter);
         floatingButton = findViewById(R.id.floatingButton);
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_menu);
@@ -224,6 +275,7 @@ public class Trangchu_Admin<FirebaseListAdapter> extends AppCompatActivity imple
                 Toast.makeText(Trangchu_Admin.this, error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+
     }
 
     private void Display() {
@@ -294,6 +346,7 @@ public class Trangchu_Admin<FirebaseListAdapter> extends AppCompatActivity imple
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
+
     public void displayAlertDialog() {
         LayoutInflater inflater = getLayoutInflater();
         View alertLayout = inflater.inflate(R.layout.customdialog, null);
@@ -316,9 +369,6 @@ public class Trangchu_Admin<FirebaseListAdapter> extends AppCompatActivity imple
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 // code for matching password
-                String user = etUsername.getText().toString();
-                String pass = etPassword.getText().toString();
-                Toast.makeText(getBaseContext(), user + pass, Toast.LENGTH_SHORT).show();
                 String mkcu = mkc.getText().toString().trim();
                 String mkmoi = mkm.getText().toString().trim();
                 if(TextUtils.isEmpty(mkcu))
@@ -367,7 +417,6 @@ public class Trangchu_Admin<FirebaseListAdapter> extends AppCompatActivity imple
                                 Toast.makeText(getApplication(),   "" +e.getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         });
-
             }
         });
         AlertDialog dialog = alert.create();

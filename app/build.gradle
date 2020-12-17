@@ -39,6 +39,9 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.google.firebase:firebase-database:16.0.4'
     implementation 'com.google.firebase:firebase-storage:19.2.0'
+    implementation 'com.edmodo:cropper:2.0.0'
+    implementation 'org.michaelbel:bottomsheet:1.2.3'
+//  implementation 'com.maxkeppeler.bottomsheets:info:<latest-version>'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
@@ -59,7 +62,6 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-   
 
 
     // circular imageview
