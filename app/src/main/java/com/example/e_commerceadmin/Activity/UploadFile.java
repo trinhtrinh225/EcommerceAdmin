@@ -71,6 +71,7 @@ public class UploadFile extends AppCompatActivity {
         btnHinh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 openFile();
             }
 
@@ -111,7 +112,7 @@ public class UploadFile extends AppCompatActivity {
 
 //            add db
                     DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Danhmuc");
-                    reference.child(timestamp).setValue(hashMap).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    reference.child("Danhmuc6").setValue(hashMap).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
                             progressDialog.dismiss();
@@ -141,13 +142,11 @@ public class UploadFile extends AppCompatActivity {
                             if (uriTask.isSuccessful()) {
                                 //upload without image
                                 HashMap<String, Object> hashMap = new HashMap<>();
-                                hashMap.put("", "" + timestamp);
                                 hashMap.put("cate_name", "" + Cate_name);
                                 hashMap.put("cate_image", "" + dowloadImageUri);
-                                hashMap.put("uid", "" + firebaseAuth.getUid());
 //            add db
                                 DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Danhmuc");
-                                reference.child(timestamp).setValue(hashMap).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                reference.child("Danhmuc6").setValue(hashMap).addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void aVoid) {
                                         progressDialog.dismiss();
@@ -191,7 +190,7 @@ public class UploadFile extends AppCompatActivity {
 
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
 
-            Uri uri = data.getData();
+            uri = data.getData();
 
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);

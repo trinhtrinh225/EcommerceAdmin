@@ -34,9 +34,11 @@ import android.widget.Toast;
 import com.example.e_commerceadmin.Adapter.AdapterProducts;
 import com.example.e_commerceadmin.Model.ListCategory;
 import com.example.e_commerceadmin.Model.ProductModel;
+import com.example.e_commerceadmin.PhanHoiKH;
 import com.example.e_commerceadmin.QLDonHang;
 import com.example.e_commerceadmin.QLKhachHang;
 import com.example.e_commerceadmin.R;
+import com.example.e_commerceadmin.ThongTinCuaHang.ThongTin;
 import com.example.e_commerceadmin.dsden;
 import com.example.e_commerceadmin.QuanLySanPham.them;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -384,6 +386,16 @@ public class Trangchu_Admin<FirebaseListAdapter> extends AppCompatActivity imple
                 Toast.makeText(this, "Danh Sách Đen", Toast.LENGTH_SHORT).show();
                 Intent intent2 = new Intent(Trangchu_Admin.this, dsden.class);
                 startActivity(intent2);
+                break;
+            case R.id.nav_ttch:
+                Toast.makeText(this, "Thông tin cửa hàng", Toast.LENGTH_SHORT).show();
+                Intent intent3 = new Intent(Trangchu_Admin.this, ThongTin.class);
+                startActivity(intent3);
+                break;
+            case R.id.nav_phkh:
+                Toast.makeText(this, "Phản hồi Khách Hàng", Toast.LENGTH_SHORT).show();
+                Intent intent4 = new Intent(Trangchu_Admin.this, PhanHoiKH.class);
+                startActivity(intent4);
                 break;
             case R.id.nav_dmk:
                 displayAlertDialog();

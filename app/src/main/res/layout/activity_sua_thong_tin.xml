@@ -16,21 +16,33 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
     <ImageView
+        android:id="@+id/imgHinh"
         android:layout_margin="30dp"
         android:layout_width="178dp"
         android:layout_height="114dp"
         android:layout_gravity="center"
         android:src="@drawable/logo" />
+            <Button
+                android:id="@+id/btnHinh"
+                android:layout_marginTop="50dp"
+                android:layout_width="147dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Chon" />
     <EditText
+        android:id="@+id/diaChi"
         style="@style/Edittest"
         android:hint="Nhập địa chỉ"/>
     <EditText
+        android:id="@+id/thoiGian"
         style="@style/Edittest"
         android:hint="Nhập thời gian mở của"/>
     <EditText
+        android:id="@+id/SDT"
         style="@style/Edittest"
         android:hint="Nhập số điện thoại"/>
     <EditText
+        android:id="@+id/moTa"
         style="@style/Edittest"
         android:hint="Mô tả thêm"/>
 

@@ -13,6 +13,14 @@
         android:id="@+id/nav_dsd"
         android:icon="@drawable/ic_block"></item>
     <item
+        android:title="Thông tin cửa hàng"
+        android:id="@+id/nav_ttch"
+        android:icon="@drawable/ic_baseline_store_24"></item>
+    <item
+        android:title="Phản hồi khách hàng"
+        android:id="@+id/nav_phkh"
+        android:icon="@drawable/ic_baseline_feedback_24"></item>
+    <item
         android:title="Đổi mật khẩu"
         android:id="@+id/nav_dmk"
         android:icon="@drawable/ic_baseline_vpn_key_24"></item>

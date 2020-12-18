@@ -7,46 +7,17 @@
     android:orientation="vertical"
     tools:context=".ThongTinCuaHang.ThongTin">
 
-    <ImageView
-        android:layout_margin="30dp"
-        android:layout_width="178dp"
-        android:layout_height="114dp"
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:paddingTop="20dp"
+        android:id="@+id/recycle_info"
+        android:layout_width="286dp"
+        android:layout_height="121dp"
         android:layout_gravity="center"
-        android:src="@drawable/logo" />
-    <TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center"
-    android:layout_margin="10dp"
-    android:textSize="20dp"
-    android:textColor="#000"
-    android:text="Địa chỉ: 92 Hoàng Diệu 2      "/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:textSize="20dp"
-        android:textColor="#000"
-        android:text="Thời gian mở cửa từ: 9h - 21h"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="10dp"
-        android:textSize="20dp"
-        android:textColor="#000"
-        android:text="SDT: 090807066"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="10dp"
-        android:textSize="20dp"
-        android:textColor="#000"
-        android:text=""/>
+        android:layout_weight="5" />
 
     <Button
-        android:id="@+id/btnSua"
+        android:id="@+id/btnSua1"
         style="@style/Button"
         android:layout_marginTop="50dp"
         android:layout_width="147dp"
