@@ -6,4 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".PhanHoiKH">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycle_info"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_weight="5"
+        android:paddingTop="20dp" />
+
 </LinearLayout>
