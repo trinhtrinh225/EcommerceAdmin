@@ -7,6 +7,8 @@
 
     <string name="open">open</string>
     <string name="close">close</string>
+    <string name="txtWriteReview">Đánh giá</string>
+    <string name="txtReview">The Journal of Information and Communication Technology of the Post and Telecommunication Institute of Technology is a specialized magazine with independent reviewers with the work score set by the GSNN title council as 0 - 0.5; is published periodically 04 issues / year under the License for printing press No. 697 / GP-BTTTT dated December 21, 2015 of the Ministry of Information and Communications.</string>
 
     <string name="title_notifications">Notifications</string>
     <string-array name="list">
