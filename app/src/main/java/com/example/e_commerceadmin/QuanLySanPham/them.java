@@ -59,7 +59,7 @@ public class them extends AppCompatActivity {
     private String[] storagePermission;
     //    Image URI
     private Uri image_Uri;
-//    FireBase
+    //    FireBase
     private FirebaseAuth firebaseAuth;
     private ProgressDialog progressDialog;
 
@@ -83,12 +83,10 @@ public class them extends AppCompatActivity {
         discountSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked)
-                {
+                if (isChecked) {
                     //show discount ra
                     themDiscount.setVisibility(View.VISIBLE);
-                }
-                else{
+                } else {
                     //uncheck
                     themDiscount.setVisibility(View.GONE);
                 }
@@ -121,12 +119,12 @@ public class them extends AppCompatActivity {
     }
 //    ===========================================Button Huy=====================================================
 
-//    ===========================================Button Them SP=================================================
+    //    ===========================================Button Them SP=================================================
 //    Nhap du lieu
     private String productTitle, productDescription, productCategory, productQuantity, productPrice, discountPrice;
     private boolean discountAvailable = false;
-    private void inputData()
-    {
+
+    private void inputData() {
         //                1.Nhap du lieu
         productTitle = themTenSP.getText().toString().trim();
         productCategory = themDanhMucSP.getText().toString().trim();
@@ -137,45 +135,39 @@ public class them extends AppCompatActivity {
         discountAvailable = discountSwitch.isChecked(); //true/false
 
 //         2.Kiem tra du lieu
-        if(TextUtils.isEmpty(productTitle))
-        {
+        if (TextUtils.isEmpty(productTitle)) {
             Toast.makeText(this, "Không được bỏ trống tên SP ", Toast.LENGTH_SHORT).show();
             return;
         }
-        if(TextUtils.isEmpty(productPrice))
-        {
+        if (TextUtils.isEmpty(productPrice)) {
             Toast.makeText(this, "Không được bỏ trống giá SP", Toast.LENGTH_SHORT).show();
             return;
         }
-        if(TextUtils.isEmpty(productCategory))
-        {
+        if (TextUtils.isEmpty(productCategory)) {
             Toast.makeText(this, "Bạn phải chọn một danh mục", Toast.LENGTH_SHORT).show();
             return;
         }
-        if(discountAvailable){
+        if (discountAvailable) {
             //product is with discount
-            discountPrice =  themDiscount.getText().toString().trim();
-            if(TextUtils.isEmpty(discountPrice))
-            {
+            discountPrice = themDiscount.getText().toString().trim();
+            if (TextUtils.isEmpty(discountPrice)) {
                 Toast.makeText(this, "Bat buoc nhap", Toast.LENGTH_SHORT).show();
                 return;
             }
-        }
-        else {
+        } else {
             //product is without discount
             discountPrice = "0";
         }
         addProduct();
-        
-        
+
+
     }
 
     private void addProduct() {
         progressDialog.setMessage("Them sp...");
         progressDialog.show();
-        final String timestamp =  " " + System.currentTimeMillis();
-        if(image_Uri == null)
-        {
+        final String timestamp = " " + System.currentTimeMillis();
+        if (image_Uri == null) {
             //upload without image
             HashMap<String, Object> hashMap = new HashMap<>();
             hashMap.put("productId", "" + timestamp);
@@ -202,11 +194,11 @@ public class them extends AppCompatActivity {
                 @Override
                 public void onFailure(@NonNull Exception e) {
                     progressDialog.dismiss();
-                    Toast.makeText(them.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(them.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
-            })  ;
-            
-        }   else {
+            });
+
+        } else {
             //upload with image
             //name and path of image to be uploaded
             String filePathandName = "product_image/" + "" + timestamp;
@@ -216,10 +208,9 @@ public class them extends AppCompatActivity {
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 //                    get URL of upload image
                     Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
-                    while (!uriTask.isSuccessful());
+                    while (!uriTask.isSuccessful()) ;
                     Uri dowloadImageUri = uriTask.getResult();
-                    if(uriTask.isSuccessful())
-                    {
+                    if (uriTask.isSuccessful()) {
                         //upload without image
                         HashMap<String, Object> hashMap = new HashMap<>();
                         hashMap.put("productId", "" + timestamp);
@@ -246,23 +237,23 @@ public class them extends AppCompatActivity {
                             @Override
                             public void onFailure(@NonNull Exception e) {
                                 progressDialog.dismiss();
-                                Toast.makeText(them.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(them.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
                             }
-                        })  ;
+                        });
                     }
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
                     progressDialog.dismiss();
-                    Toast.makeText(them.this, ""+ e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(them.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
-            
+
         }
     }
-    private void clearData()
-    {
+
+    private void clearData() {
         //clear data after upload products
         themTenSP.setText("");
         themDiscount.setText("");
@@ -272,7 +263,7 @@ public class them extends AppCompatActivity {
         themMoTaSP.setText("");
         themImageSP.setImageResource(R.drawable.aonu_image);
         image_Uri = null;
-        
+
     }
 
     //========================================Chon danh muc san pham=================================================
@@ -304,28 +295,21 @@ public class them extends AppCompatActivity {
         String[] options = {"camera", "gallery"};
 //        dialog
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Pick Image").setItems(options, new DialogInterface.OnClickListener() {
+        builder.setTitle("Chọn ảnh").setItems(options, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                if(which == 0)
-                {
+                if (which == 0) {
                     //camera click
-                    if(checkCameraPermission())
-                    {
-                        PickFromCamera();
+                    if (checkCameraPermission()) {
+                       PickFromCamera();
+                    } else {
+                        requestCameraPermission();
                     }
-                    else{
-                        requestCameraPermissin();
-                    }
-                }
-                else
-                {
+                } else {
                     //gallery click
-                    if(checkStoragePermission())
-                    {
+                    if (checkStoragePermission()) {
                         PickFromGallery();
-                    }
-                    else{
+                    } else {
                         requestStoragePermissin();
                     }
                 }
@@ -339,6 +323,7 @@ public class them extends AppCompatActivity {
         intent.setType("image/*");
         startActivityForResult(intent, IMAGE_PICK_GALLERY_CODE);
     }
+
     //        intent to pick image from camera
     private void PickFromCamera() {
         // using mediaStorage to Pick high/original quality Image
@@ -350,52 +335,55 @@ public class them extends AppCompatActivity {
         intent.putExtra(MediaStore.EXTRA_OUTPUT, image_Uri);
         startActivityForResult(intent, IMAGE_PICK_CAMERA_CODE);
     }
+
     private boolean checkStoragePermission() {
         boolean result = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == (PackageManager.PERMISSION_GRANTED);
-        return  result;
+        return result;
     }
+
     private void requestStoragePermissin() {
         ActivityCompat.requestPermissions(this, storagePermission, STORAGE_REQUEST_CODE);
     }
+
     private boolean checkCameraPermission() {
-        boolean result = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == (PackageManager.PERMISSION_GRANTED);
-        boolean result1 = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == (PackageManager.PERMISSION_GRANTED);
-        return  result && result1;
+        boolean result = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
+                == (PackageManager.PERMISSION_GRANTED);
+        boolean result1 = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                == (PackageManager.PERMISSION_GRANTED);
+        return result && result1;
     }
-    private void requestCameraPermissin() {
+
+    private void requestCameraPermission() {
         ActivityCompat.requestPermissions(this, cameraPermission, CAMERA_REQUEST_CODE);
     }
+
     //handle permisson result
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        switch (requestCode)
-        {
-            case CAMERA_REQUEST_CODE:{
-                if(grantResults.length>0){
-                   boolean cameraAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
-                   boolean storageAccepted = grantResults[1] == PackageManager.PERMISSION_GRANTED;
-                   if(cameraAccepted && storageAccepted)
-                   {
-                       PickFromCamera();
-                   }
-                   else{
-                       Toast.makeText(this, "Bắt buộc máy ảnh và quyền lưu trữ", Toast.LENGTH_SHORT).show();
-                   }
+        switch (requestCode) {
+            case CAMERA_REQUEST_CODE: {
+                if (grantResults.length > 0) {
+                    boolean cameraAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
+                    boolean storageAccepted = grantResults[1] == PackageManager.PERMISSION_GRANTED;
+                    if (cameraAccepted && storageAccepted) {
+                        PickFromCamera();
+                    } else {
+                        Toast.makeText(this, "Bắt buộc máy ảnh và quyền lưu trữ", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
-            case STORAGE_REQUEST_CODE:{
-                if(grantResults.length>0){
+            break;
+            case STORAGE_REQUEST_CODE: {
+                if (grantResults.length > 0) {
                     boolean storageAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
-                    if(storageAccepted)
-                    {
+                    if (storageAccepted) {
                         PickFromGallery();
-                    }
-                    else
-                    {
+                    } else {
                         Toast.makeText(this, "Bắt buộc quyền lưu trữ", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
+            break;
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
@@ -403,19 +391,15 @@ public class them extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if(resultCode == RESULT_OK)
-        {
-            if(requestCode == IMAGE_PICK_GALLERY_CODE)
-            {
+        if (resultCode == RESULT_OK) {
+            if (requestCode == IMAGE_PICK_GALLERY_CODE) {
                 image_Uri = data.getData();
                 themImageSP.setImageURI(image_Uri);
-            }
-            else if(requestCode == IMAGE_PICK_CAMERA_CODE)
-            {
+            } else if (requestCode == IMAGE_PICK_CAMERA_CODE) {
                 themImageSP.setImageURI(image_Uri);
             }
         }
-        super.onActivityResult(requestCode, resultCode, data);
+            super.onActivityResult(requestCode, resultCode, data);
     }
 
 //    =================================================================================================================================================================

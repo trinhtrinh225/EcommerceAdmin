@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".QuanLySanPham.them">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:orientation="vertical">
+
+        <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/themImageSP"
+                    android:padding="10dp"
+                    android:layout_margin="10dp"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp"
+                    android:src="@drawable/phone_image" />
+
+                <EditText
+                    android:id="@+id/themTenSP"
+                    style="@style/Edittest"
+                    android:hint="Nhập tên sản phẩm" />
+
+                <EditText
+                    android:id="@+id/themGiaSP"
+                    style="@style/Edittest"
+                    android:hint="Nhập giá sản phẩm" />
+
+                <EditText
+                    android:id="@+id/themSLSP"
+                    style="@style/Edittest"
+                    android:hint="Số lượng sản phẩm" />
+
+                <TextView
+                    android:id="@+id/themDanhMucSP"
+                    style="@style/Edittest"
+                    android:drawableRight="@drawable/spinner"
+                    android:hint="Danh mục sản phẩm" />
+
+                <EditText
+                    android:id="@+id/themMoTaSP"
+                    style="@style/Edittest"
+                    android:layout_height="200dp"
+                    android:hint="Mô tả sản phẩm" />
+
+
+        
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:src="@drawable/phone_image" />
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:src="@drawable/phone_image" />
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:src="@drawable/phone_image" />
+                </LinearLayout>
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fab"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left|end"
+                    android:layout_margin="@dimen/fab_margin"
+                    android:background="#000"
+                    android:src="@drawable/ic_baseline_add_24" />
+                <!--                Discount-->
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/discountSwitch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorbgEnd"
+                    android:text="Giam gia"
+                    />
+                <EditText
+                    android:id="@+id/themDiscount"
+                    style="@style/Edittest"
+                    android:hint="Phần trăm giảm giá (%)" />
+
+
+
+            </LinearLayout>
+
+        </ScrollView>
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="end|bottom"
+        android:orientation="horizontal">
+
+
+        <Button
+            android:textStyle="bold"
+            android:textColor="#000"
+            android:layout_marginRight="50dp"
+            android:layout_marginLeft="50dp"
+            android:id="@+id/btnCapNhatSP"
+            style="@style/Button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Cập Nhật" />
+    </LinearLayout>
+</LinearLayout>
