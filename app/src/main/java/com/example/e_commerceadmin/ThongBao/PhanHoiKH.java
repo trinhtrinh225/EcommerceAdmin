@@ -1,13 +1,18 @@
-package com.example.e_commerceadmin;
+package com.example.e_commerceadmin.ThongBao;
 
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Adapter;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.e_commerceadmin.R;
+import com.google.firebase.database.DatabaseReference;
+
 public class PhanHoiKH extends AppCompatActivity {
+    DatabaseReference userRefForSeen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +30,6 @@ public class PhanHoiKH extends AppCompatActivity {
             case android.R.id.home:
                 onBackPressed();
                 return true;
-
             default:break;
         }
         return super.onOptionsItemSelected(item);

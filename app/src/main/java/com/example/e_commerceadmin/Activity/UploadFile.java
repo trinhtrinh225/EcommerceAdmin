@@ -46,12 +46,9 @@ public class UploadFile extends AppCompatActivity {
     ImageView hinhup;
     private static final int PICK_IMAGE_REQUEST = 1;
     Uri uri;
-    ProgressBar progress;
     EditText name;
     private FirebaseAuth firebaseAuth;
-
-    private ProgressDialog progressDialog;
-    String Cate_name;
+    ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,31 +85,42 @@ public class UploadFile extends AppCompatActivity {
             public void onClick(View view) {
                 inputData();
             }
-
-            private void inputData() {
+            private String cate_name;
+            private void inputData()
+            {
                 //                1.Nhap du lieu
-                Cate_name = name.getText().toString().trim();
+                cate_name = name.getText().toString().trim();
 
 //         2.Kiem tra du lieu
-                if (TextUtils.isEmpty(Cate_name)) {
+                if(TextUtils.isEmpty(cate_name))
+                {
                     Toast.makeText(UploadFile.this, "Không được bỏ trống tên DM ", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 addCate();
+
+
             }
 
             private void addCate() {
-                progressDialog.show(UploadFile.this, "Thêm danh mục", "loading....", true);
-                final String timestamp = " " + System.currentTimeMillis();
-                if (uri == null) {
+                progressDialog = new ProgressDialog(UploadFile.this);
+                progressDialog.setTitle("Đang thêm danh mục...");
+                progressDialog.setCanceledOnTouchOutside(false);
+                progressDialog.setMessage("Them dm...");
+                progressDialog.show();
+                final String timestamp =  " " + System.currentTimeMillis();
+                if(uri == null)
+                {
                     //upload without image
                     HashMap<String, Object> hashMap = new HashMap<>();
-                    hashMap.put("cate_name", "" + Cate_name);
-
-
+                    hashMap.put("cateId", "" + timestamp);
+                    hashMap.put("cate_name", "" + cate_name);
+                    hashMap.put("cate_image", "");
+                    hashMap.put("timestamp", "" + timestamp);
+                    hashMap.put("uid", "" + firebaseAuth.getUid());
 //            add db
                     DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Danhmuc");
-                    reference.child("Danhmuc6").setValue(hashMap).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    reference.child(timestamp).setValue(hashMap).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
                             progressDialog.dismiss();
@@ -123,57 +131,61 @@ public class UploadFile extends AppCompatActivity {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             progressDialog.dismiss();
-                            Toast.makeText(UploadFile.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(UploadFile.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
-                    });
+                    })  ;
 
-                } else {
+                }   else {
                     //upload with image
                     //name and path of image to be uploaded
-                    String filePathandName = "cate_image/" + "";
+                    String filePathandName = "cate_image/" + "" + timestamp;
                     StorageReference storageReference = FirebaseStorage.getInstance().getReference(filePathandName);
                     storageReference.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 //                    get URL of upload image
                             Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
-                            while (!uriTask.isSuccessful()) ;
+                            while (!uriTask.isSuccessful());
                             Uri dowloadImageUri = uriTask.getResult();
-                            if (uriTask.isSuccessful()) {
+                            if(uriTask.isSuccessful())
+                            {
                                 //upload without image
                                 HashMap<String, Object> hashMap = new HashMap<>();
-                                hashMap.put("cate_name", "" + Cate_name);
+                                hashMap.put("cateId", "" + timestamp);
+                                hashMap.put("cate_name", "" + cate_name);
                                 hashMap.put("cate_image", "" + dowloadImageUri);
+                                hashMap.put("timestamp", "" + timestamp);
+                               // hashMap.put("uid", "" + firebaseAuth.getUid());
 //            add db
                                 DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Danhmuc");
-                                reference.child("Danhmuc6").setValue(hashMap).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                reference.child(timestamp).setValue(hashMap).addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void aVoid) {
                                         progressDialog.dismiss();
-                                        Toast.makeText(UploadFile.this, "Them DM", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(UploadFile.this, "Thêm thành công", Toast.LENGTH_SHORT).show();
                                         clearData();
                                     }
                                 }).addOnFailureListener(new OnFailureListener() {
                                     @Override
                                     public void onFailure(@NonNull Exception e) {
                                         progressDialog.dismiss();
-                                        Toast.makeText(UploadFile.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(UploadFile.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
                                     }
-                                });
+                                })  ;
                             }
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             progressDialog.dismiss();
-                            Toast.makeText(UploadFile.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(UploadFile.this, ""+ e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     });
 
                 }
             }
-
-            private void clearData() {
+            private void clearData()
+            {
                 //clear data after upload products
                 name.setText("");
                 uri = null;
@@ -209,7 +221,7 @@ public class UploadFile extends AppCompatActivity {
         hinhup = findViewById(R.id.hinhup);
         btnHinh = findViewById(R.id.btnIcon);
         name = findViewById(R.id.ten);
-        progress = findViewById(R.id.progress_bar);
+
 
     }
 
