@@ -406,7 +406,7 @@ public class them extends AppCompatActivity {
 
     private void AnhXa() {
         themImageSP = findViewById(R.id.themImageSP);
-        themTenSP = findViewById(R.id.themTenSP);
+            themTenSP = findViewById(R.id.themTenSP);
         themGiaSP = findViewById(R.id.themGiaSP);
         themSLSP = findViewById(R.id.themSLSP);
         btnHuy = findViewById(R.id.btnHuy);

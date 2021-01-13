@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="10dp"
+    app:cardElevation="15dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#0B86BF"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/oder_Name"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="Username"
+            android:textColor="#fff"
+            android:textSize="14sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/oder_Phone"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="5dp"
+            android:textStyle="bold"
+            android:text="094531"
+            android:textAlignment="textEnd"
+            android:textColor="#fff"
+            android:textSize="14sp"
+            android:layout_alignParentRight="true"
+            android:gravity="end" />
+
+        <TextView
+            android:id="@+id/oder_CartPriceTotal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="100000"
+            android:layout_below="@+id/oder_Name"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:layout_marginTop="25dp"
+            android:gravity="center"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/oder_Address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="Address, City"
+            android:layout_below="@+id/oder_CartPriceTotal"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/oder_Date_Time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="Date Time"
+            android:layout_below="@+id/oder_Address"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:textStyle="bold"/>
+
+        <Button
+            android:id="@+id/oder_Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_below="@id/oder_Date_Time"
+            android:text="Chi Tiết Đơn Hàng"
+            android:textStyle="bold"
+            android:textColor="#1565C0"
+            android:textSize="16sp"
+
+            android:background="@drawable/round_border_item"/>
+
+    </RelativeLayout>
+
+
+</androidx.cardview.widget.CardView>

@@ -320,7 +320,7 @@ public class Trangchu_Admin<FirebaseListAdapter> extends AppCompatActivity imple
         switch (menuItem.getItemId()) {
             case R.id.nav_qldh:
                 Toast.makeText(this, "Quản Lý Đơn Hàng", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(Trangchu_Admin.this, QLDonHang.class);
+                Intent intent = new Intent(Trangchu_Admin.this, QuanLyDonHang.class);
                 startActivity(intent);
                 break;
             case R.id.nav_qlkh:

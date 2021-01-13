@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <application
         android:allowBackup="true"
@@ -15,26 +15,32 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".QuanLySanPham.UpdateProduct"
-            android:parentActivityName=".Activity.Trangchu_Admin"></activity>
+        <activity android:name=".Activity.ChiTietDonHang"
+            android:parentActivityName=".Activity.QuanLyDonHang"></activity>
+        <activity
+            android:name=".Activity.QuanLyDonHang"
+            android:parentActivityName=".Activity.Trangchu_Admin" />
+        <activity
+            android:name=".QuanLySanPham.UpdateProduct"
+            android:parentActivityName=".Activity.Trangchu_Admin" />
         <activity android:name=".ThongTinCuaHang.SuaThongTin" />
         <activity android:name=".dsden" />
         <activity android:name=".QLKhachHang" />
         <activity android:name=".QLDonHang" />
         <activity android:name=".QuanLySanPham.Sua" />
-        <activity android:name=".QuanLySanPham.them"></activity>
+        <activity android:name=".QuanLySanPham.them" />
         <activity android:name=".Activity.UploadFile" />
         <activity android:name=".ThongTinCuaHang.ThongTin" />
         <activity
             android:name=".Activity.Trangchu_Admin"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".Activity.Login_Admin">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.Login_Admin"></activity>
     </application>
 
 </manifest>
